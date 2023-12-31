@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project 3</title>
+</head>
+<style>
+    * {
+        box-sizing: border-box;
+    }
+    :root {
+        --spacing: 10px;
+        --base: #ffc600 ;
+        --blur: 10px ;
+    }
+    body {
+        background-color: #193549;
+        text-align: center;
+        color: white;
+        font-size: 25px;
+        font-weight: bold;
+        font-family: 'Courier New', Courier, monospace;
+    }
+    span {
+        color: var(--base);
+    }
+    img {
+        max-width: 100%;
+        margin: 20px auto;
+        padding: var(--spacing);
+        background-color: var(--base);
+        filter: blur(var(--blur));
+    }
+    .container {
+        width: 90vw;
+        margin: auto;
+    }
+    input[type="color"] {
+        width: 100px;
+        border: none;
+        border-radius: 5px;
+        padding: 0;
+    }
+    input:first-of-type {
+        margin-right: calc(var(--spacing) + 50px);
+    }
+    form {
+        margin: 50px;
+    }
+</style>
+<body>
+    <div class="container">
+        <h1>Update CSS Variables With <span>JS</span></h1>
+    <form >
+        <label>Spacing :</label>
+        <input type="range" name="spacing" id="" min="10" max="200" value="10" data-sizing="px">
+        <label>Blur :</label>
+        <input type="range" name="blur" id="" min="0" max="25" value="10" data-sizing="px"><br>
+        <label>Base Color :</label>
+        <input type="color" name="base" id="" value="#ffc600"><br>
+    </form>
+    <img src="images/background/background3.webp" alt="">
+    </div>
+
+
+
+
+
+    <script>
+        let inputs = document.querySelectorAll("form input") ;
+        function handleUpdate() {
+            let pixels = this.dataset.sizing || "" ;
+            document.documentElement.style.setProperty(`--${this.name}` , this.value + pixels)
+        }
+        inputs.forEach(input => {
+            input.addEventListener("change", handleUpdate) ;
+            input.addEventListener("mousemove", handleUpdate) ;
+        })
+    </script>
+</body>
+</html>
